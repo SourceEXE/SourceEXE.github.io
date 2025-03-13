@@ -128,10 +128,15 @@ body {
 }
 
 body .page-content {
-  margin-top: 10px; /* original 110px */
   background-color: #27292a;
   padding: 25px; /* original 60px*/
-  border-radius: 23px;
+  border-radius: 0 0 23px 23px;
+}
+
+body .page-content-head {
+  margin-top: 10px; /* original 110px */
+  background-color: #27292a;
+  border-radius: 23px 23px 0 0;
 }
 
 p {
@@ -766,7 +771,7 @@ Banner Style
   background-position: center center;
   background-size: cover;
   min-height: 380px;
-  border-radius: 23px;
+  border-radius: 23px 23px 0 0;
   padding: 80px 60px;
 }
 
@@ -964,28 +969,27 @@ Featured Games Style
 
 .featured-games .item .thumb .hover-effect {
   position: absolute;
-  bottom: -100px;
+  bottom: 15px;
   text-align: center;
   width: 100%;
-  opacity: 0;
-  visibility: hidden;
-  transition: all .4s;
-}
-
-.featured-games .item .thumb:hover .hover-effect {
-  opacity: 1;
-  visibility: visible;
-  bottom: 15px;
 }
 
 .featured-games .item .thumb .hover-effect h6 {
-  background-color: rgba(31,33,34,0.95);
+  background-color: rgba(0, 0, 0, .5);
   display: inline-block;
-  color: #ec6090;
+  color: #3498db;
   font-weight: 600;
   font-size: 14px;
   padding: 10px 20px;
   border-radius: 25px;
+  border: 1px solid #3498db;
+  width: 90%;
+}
+
+.featured-games .item .thumb .hover-effect h6:hover {
+  border-color: #fff;
+  background-color: #fff;
+  color: #3498db;
 }
 
 .featured-games .item img {
