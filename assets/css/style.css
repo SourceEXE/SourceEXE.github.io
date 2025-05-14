@@ -139,12 +139,12 @@ p {
 }
 
 ::selection {
-  background: #e75e8d;
+  background: rgba(52, 152, 219, 0.5);
   color: #fff;
 }
 
 ::-moz-selection {
-  background: #e75e8d;
+  background: rgba(52, 152, 219, 0.5);
   color: #fff;
 }
 
@@ -504,7 +504,7 @@ footer p a {
 }
 
 footer p a:hover {
-  color: #ec6090;
+  color: #3498db;
 }
 
 /* 
@@ -1015,12 +1015,6 @@ body {
   opacity: 0.6;
   background-color: rgba(0, 0, 0, .5);
   pointer-events: none;
-}
-
-.separator {
-  width: 1px;
-  height: 44.5px;  /* Puedes ajustar esta altura */
-  color: rgba(255, 255, 255, 0.8); /* Color de la barra */
 }
 
 .invisible-table {
