@@ -72,72 +72,101 @@
     <div class="row">
       <div class="col-lg-12">
         <div class="page-content">
-            <ul class="nav-selector">
-              <div class="main-border-button" onclick="cargarHTML('/home/gbf.html')">
-                <a href="#">GranblueFantasy</a>
-              </div>
-              <div class="main-border-button" onclick="cargarHTML('home/uma.html')">
-                <a href="#">Uma Musume</a>
-              </div>
-            </ul>
-            <div id="contenedor"></div>
+          <!-- Botones -->
+          <div class="nav-menu">
+            <div class="col-lg-12">
+              <ul class="nav-selector">
+                <div class="nav-button" data-archivo="/home/gbf.html" onclick="cargarHTML(this)">
+                  Granblue Fantasy
+                </div>
+                <div class="separator"></div>
+                <div class="nav-button" data-archivo="/home/uma.html" onclick="cargarHTML(this)">
+                  Uma Musume
+                </div>
+                <div class="separator"></div>
+                <div class="nav-button" data-archivo="/home/uma.html" onclick="cargarHTML(this)">
+                  Hololive
+                </div>
+              </ul>
+            </div>
+          </div>
 
-            <script>
-              function cargarHTML(archivo) {
-                const contenedor = document.getElementById('contenedor');
-            
-                // Mostrar preloader animado
-                contenedor.innerHTML = `
-                  <center>
-                    <div class="preloader-inner">
-                      <span class="dot"></span>
-                      <div class="dots">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                      </div>
-                    </div>
-                  </center>
-                `;
-            
-                fetch(archivo)
-                  .then(response => response.text())
-                  .then(data => {
-                    contenedor.innerHTML = ''; // Limpiar loader
-            
-                    const tempDiv = document.createElement('div');
-                    tempDiv.innerHTML = data;
-            
-                    // Insertar primero el contenido que no sea <script>
-                    Array.from(tempDiv.childNodes).forEach(node => {
-                      if (node.tagName !== 'SCRIPT') {
-                        contenedor.appendChild(node.cloneNode(true));
-                      }
-                    });
-            
-                    // Ejecutar los <script> con un pequeño retardo
-                    setTimeout(() => {
-                      Array.from(tempDiv.childNodes).forEach(node => {
-                        if (node.tagName === 'SCRIPT') {
-                          const newScript = document.createElement('script');
-                          if (node.src) {
-                            newScript.src = node.src;
-                          } else {
-                            newScript.textContent = node.textContent;
-                          }
-                          contenedor.appendChild(newScript);
-                        }
-                      });
-                    }, 100); // Puedes ajustar este tiempo si es necesario
-                  })
-                  .catch(error => {
-                    contenedor.innerHTML = `<p>Error al cargar el contenido: ${error}</p>`;
+          <!-- Contenedor de contenido -->
+          <div id="contenedor"></div>
+
+          <!-- Script -->
+          <script>
+            function cargarHTML(boton) {
+              const archivo = boton.getAttribute('data-archivo');
+              const contenedor = document.getElementById('contenedor');
+
+              // Mostrar preloader
+              contenedor.innerHTML = `
+                <center>
+                <div class="preloader-inner">
+                  <span class="dot"></span>
+                  <div class="dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
+                <center>
+              `;
+
+              fetch(archivo)
+                .then(response => response.text())
+                .then(async data => {
+                  contenedor.innerHTML = '';
+                  const tempDiv = document.createElement('div');
+                  tempDiv.innerHTML = data;
+
+                  // Separar nodos script del contenido general
+                  const scripts = [];
+                  Array.from(tempDiv.childNodes).forEach(node => {
+                    if (node.tagName === 'SCRIPT') {
+                      scripts.push(node);
+                    } else {
+                      contenedor.appendChild(node.cloneNode(true));
+                    }
                   });
-              }
-            
-              // Cargar por defecto gbf.html al inicio
-              window.onload = () => cargarHTML('/home/gbf.html');
-            </script>
+
+                  // Ejecutar scripts uno por uno
+                  for (const oldScript of scripts) {
+                    const newScript = document.createElement('script');
+                    if (oldScript.src) {
+                      // Cargar script externo con promesa
+                      await new Promise((resolve, reject) => {
+                        newScript.src = oldScript.src;
+                        newScript.onload = resolve;
+                        newScript.onerror = reject;
+                        document.body.appendChild(newScript);
+                      });
+                    } else {
+                      // Insertar script interno
+                      newScript.textContent = oldScript.textContent;
+                      document.body.appendChild(newScript);
+                    }
+                  }
+
+                  // Activar visual del botón actual
+                  document.querySelectorAll('.nav-button').forEach(b => {
+                    b.classList.remove('activo');
+                    b.style.pointerEvents = 'auto';
+                  });
+                  boton.classList.add('activo');
+                  boton.style.pointerEvents = 'none';
+                })
+                .catch(error => {
+                  contenedor.innerHTML = `<p>Error al cargar el contenido: ${error}</p>`;
+                });
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+              const botonInicial = document.querySelector('.nav-button[data-archivo="/home/gbf.html"]');
+              if (botonInicial) cargarHTML(botonInicial);
+            });
+          </script>
         </div>
       </div>
     </div>

@@ -989,6 +989,7 @@ Featured Games Style
   border-radius: 23px;
   background-color: #1f2122;
   padding: 30px;
+  margin-top: 25px;
 }
 
 .featured-games .item .thumb {
@@ -1756,12 +1757,47 @@ body {
   }
 }
 
+/* Nuevo */
+
+.nav-menu {
+  background-color: #1f2122;
+  border-radius: 23px;
+}
+
 .nav-selector {
   list-style: none;       /* Elimina los puntos de la lista */
   padding: 0;
   margin: 0;
   display: flex;          /* Hace que los elementos estén en línea horizontal */
   justify-content: center; /* Centra horizontalmente los elementos */
-  gap: 10px;              /* Espacio entre botones (ajustable) */
 }
 
+.nav-button {
+  font-size: 14px;
+  color: #3498db;
+  padding: 12px 30px;
+  display: inline-block;
+  font-weight: 400;
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+  transition: all .3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-button:hover {
+  background-color: rgba(52, 152, 219, 0.5);
+  color: #fff;
+}
+
+.nav-button.activo {
+  opacity: 0.6;
+  background-color: rgba(0, 0, 0, .5);
+  pointer-events: none;
+}
+
+.separator {
+  width: 1px;
+  height: 44.5px;  /* Puedes ajustar esta altura */
+  background-color: #fff; /* Color de la barra */
+}
