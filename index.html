@@ -72,139 +72,72 @@
     <div class="row">
       <div class="col-lg-12">
         <div class="page-content">
-          <!-- ***** Favorite characters ***** -->
-          <div class="featured-games header-text">
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="heading-section">
-                  <h4>Favorite characters!</h4>
-                </div>
-                <div class="owl-features owl-carousel">
-                  <div class="item">
-                    <div class="thumb">
-                      <img src="assets/images/Characters/Cucouroux.png" alt="">
-                      <div class="hover-effect">
-                        <h6>Cucouroux</h6>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="thumb">
-                      <img src="assets/images/Characters/Olivia.png" alt="">
-                      <div class="hover-effect">
-                        <h6>Olivia</h6>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="thumb">
-                      <img src="assets/images/Characters/Fenie.png" alt="">
-                      <div class="hover-effect">
-                        <h6>Fenie</h6>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="thumb">
-                      <img src="assets/images/Characters/Europa.png" alt="">
-                      <div class="hover-effect">
-                        <h6>Europa</h6>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="thumb">
-                      <img src="assets/images/Characters/Catura.png" alt="">
-                      <div class="hover-effect">
-                        <h6>Catura</h6>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="thumb">
-                      <img src="assets/images/Characters/Nier.png" alt="">
-                      <div class="hover-effect">
-                        <h6>Nier</h6>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            <ul class="nav-selector">
+              <div class="main-border-button" onclick="cargarHTML('/home/gbf.html')">
+                <a href="#">GranblueFantasy</a>
               </div>
-            </div>
-          </div>
-          <!-- ***** Favorite characters End ***** -->
-          <div class="friends-banner">
-            <div class="row">
-              <div class="col-lg-12">
+              <div class="main-border-button" onclick="cargarHTML('home/uma.html')">
+                <a href="#">Uma Musume</a>
+              </div>
+            </ul>
+            <div id="contenedor"></div>
 
-              </div>
-            </div>
-          </div>
-
-          <!-- ***** Latest GWs ***** -->
-          <div class="gaming-library">
-            <div class="col-lg-12">
-              <div class="heading-section">
-                <h4>Latest GWs</h4>
-              </div>
-              <div class="item">
-                <ul>
-                  <li><img src="assets/images/Elements/Light.webp" alt="" class="templatemo-item"></li>
-                  <li><h4>GW 77</h4><span>Light</span></li>
-                  <li><h4>Date</h4><span>07/12/24 - 13/12/24</span></li>
-                  <li><h4>Honors</h4><span>5,883,940,467</span></li>
-                  <li><h4>Ranking</h4><span>#24,871</span></li>
-                  <li></li>
-                </ul>
-              </div>
-              <div class="item">
-                <ul>
-                  <li><img src="assets/images/Elements/Water.webp" alt="" class="templatemo-item"></li>
-                  <li><h4>GW 76</h4><span>Water</span></li>
-                  <li><h4>Date</h4><span>07/12/24 - 13/12/24</span></li>
-                  <li><h4>Honors</h4><span>9,691,352,292</span></li>
-                  <li><h4>Ranking</h4><span>#5,181</span></li>
-                  <li></li>
-                </ul>
-              </div>
-              <div class="item">
-                <ul>
-                  <li><img src="assets/images/Elements/Wind.webp" alt="" class="templatemo-item"></li>
-                  <li><h4>GW 75</h4><span>Wind</span></li>
-                  <li><h4>Date</h4><span>22/01/25 - 28/01/25</span></li>
-                  <li><h4>Honors</h4><span>2,809,331,694</span></li>
-                  <li><h4>Ranking</h4><span>#77,622</span></li>
-                  <li></li>
-                </ul>
-              </div>
-              <div class="item">
-                <ul>
-                  <li><img src="assets/images/Elements/Dirt.webp" alt="" class="templatemo-item"></li>
-                  <li><h4>GW 74</h4><span>Earth</span></li>
-                  <li><h4>Date</h4><span>07/09/24 - 13/09/24</span></li>
-                  <li><h4>Honors</h4><span>19,000,000,000</span></li>
-                  <li><h4>Ranking</h4><span>#882</span></li>
-                  <li></li>
-                </ul>
-              </div>
-              <div class="item last-item">
-                <ul>
-                  <li><img src="assets/images/Elements/Dark.webp" alt="" class="templatemo-item"></li>
-                  <li><h4>GW 73</h4><span>Dark</span></li>
-                  <li><h4>Date</h4><span>21/06/24 - 27/06/24</span></li>
-                  <li><h4>Honors</h4><span>6,564,116,905</span></li>
-                  <li><h4>Ranking</h4><span>#4,947</span></li>
-                  <li></li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-lg-12">
-              <div class="main-button">
-                <a href="https://gbfdata.com/en/user/23498650">See more!</a>
-              </div>
-            </div>
-          </div>
-          <!-- ***** Latest GWs End ***** -->
+            <script>
+              function cargarHTML(archivo) {
+                const contenedor = document.getElementById('contenedor');
+            
+                // Mostrar preloader animado
+                contenedor.innerHTML = `
+                  <center>
+                    <div class="preloader-inner">
+                      <span class="dot"></span>
+                      <div class="dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </div>
+                    </div>
+                  </center>
+                `;
+            
+                fetch(archivo)
+                  .then(response => response.text())
+                  .then(data => {
+                    contenedor.innerHTML = ''; // Limpiar loader
+            
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = data;
+            
+                    // Insertar primero el contenido que no sea <script>
+                    Array.from(tempDiv.childNodes).forEach(node => {
+                      if (node.tagName !== 'SCRIPT') {
+                        contenedor.appendChild(node.cloneNode(true));
+                      }
+                    });
+            
+                    // Ejecutar los <script> con un pequeño retardo
+                    setTimeout(() => {
+                      Array.from(tempDiv.childNodes).forEach(node => {
+                        if (node.tagName === 'SCRIPT') {
+                          const newScript = document.createElement('script');
+                          if (node.src) {
+                            newScript.src = node.src;
+                          } else {
+                            newScript.textContent = node.textContent;
+                          }
+                          contenedor.appendChild(newScript);
+                        }
+                      });
+                    }, 100); // Puedes ajustar este tiempo si es necesario
+                  })
+                  .catch(error => {
+                    contenedor.innerHTML = `<p>Error al cargar el contenido: ${error}</p>`;
+                  });
+              }
+            
+              // Cargar por defecto gbf.html al inicio
+              window.onload = () => cargarHTML('/home/gbf.html');
+            </script>
         </div>
       </div>
     </div>
